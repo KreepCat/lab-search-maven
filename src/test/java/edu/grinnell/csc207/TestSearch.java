@@ -126,4 +126,13 @@ public class TestSearch {
     assertBinarySearchFinds(new int[] { 1, 1, 1, 2, 2, 3 }, 3);
   } // testBinarySearchDups()
 
+  @Test
+  void testBinarySearchThree() throws Exception {
+    assertBinarySearchFinds(1, new int[] { 2, 7, 11 }, 7);
+    assertBinarySearchFinds(1, new int[] { 7, 11, 12, 13, 14 }, 11);
+    assertBinarySearchFails(new int[] { 7, 11, 15 }, 0);
+    assertBinarySearchFails(new int[] { 7, 11 }, 10);
+    assertBinarySearchFails(new int[] { 7, 11 }, 20);
+  } // testBinarySearchTwo()
+
 } // class TestSearch
