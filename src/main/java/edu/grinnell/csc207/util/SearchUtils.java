@@ -1,5 +1,6 @@
 package edu.grinnell.csc207.util;
 
+import java.util.Arrays;
 import java.util.function.Predicate;
 
 /**
@@ -41,7 +42,18 @@ public class SearchUtils {
    * @post values[index] == val
    */
   static int recursiveBinarySearch(int[] vals, int val) throws Exception {
-    return 0; // STUB
+    int halfIndexRoundDown = vals.length / 2;
+    if (vals[halfIndexRoundDown] < val) {
+      return (halfIndexRoundDown) + 1 + recursiveBinarySearch(
+          Arrays.copyOfRange(vals, (halfIndexRoundDown) + 1, vals.length), val);
+    }
+    if (vals[halfIndexRoundDown] > val) {
+      return recursiveBinarySearch(Arrays.copyOfRange(vals, 0, (halfIndexRoundDown)), val);
+    }
+    if (vals[halfIndexRoundDown] == val) {
+      return (halfIndexRoundDown);
+    }
+    throw new Exception();
   } // recursiveBinarySearch
 
   /**
@@ -77,8 +89,8 @@ public class SearchUtils {
    * @throws Exception If no matching value is found.
    */
   public static <T> T search(Iterable<T> values, Predicate<? super T> pred) throws Exception {
-    for (T value : values){
-      if (pred.test(value)){
+    for (T value : values) {
+      if (pred.test(value)) {
         return value;
       } // if
     } // for
@@ -97,9 +109,9 @@ public class SearchUtils {
    * @post values[index] == val
    */
   public static int binarySearch(int[] vals, int val) throws Exception {
-    return 0;
+    // return 0;
     // return interativeBinarySearch(vals, val);
-    // return recursiveBinarySearch(vals, val);
+    return recursiveBinarySearch(vals, val);
   } // binarySearch
 
 } // class SearchUtils
